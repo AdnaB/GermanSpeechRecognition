@@ -74,6 +74,8 @@ norm_x = False
 def traverse(root,path,search_fix='.wav',return_label=False):
     files = os.listdir(root)
     numfiles = len(files)
+    print(numfiles)
+    print(files[:5])
     if path == "train":
         set = files[:int(0.7*numfiles)]
     elif path == "dev":
@@ -89,7 +91,7 @@ def traverse(root,path,search_fix='.wav',return_label=False):
           if first:
               first = False
           else:
-              if row[1] + ".wav" in set:
+              if (row[1] + ".wav") in set:
               # print(row[1])
                   if return_label:
                       f_list.append(row[2])
