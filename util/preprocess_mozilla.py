@@ -43,18 +43,45 @@ import csv
 # win_size = paras.win_size
 # norm_x = paras.norm_x
 # /home/sanne/Documents/RUG/DeepLearning/GermanSpeechRecognition
-dev_path = '/data/s3757994/de/dev.tsv'
-train_path = '/data/s3757994/de/train.tsv'
-test_path = '/data/s3757994/de/test.tsv'
-root = '/data/s3757994/de/clips_wav/'
+dev_path = '/data/s3757994/dev.tsv'
+train_path = '/data/s3757994/train.tsv'
+test_path = '/data/s3757994/test.tsv'
+root = '/data/s3757994/clips_wav/'
 n_jobs = -2
 n_filters = 40
 win_size = 0.025/3
 norm_x = False
 
+# def dividedataset(root):
+#     files = os.listdir(root)
+#     numfiles = len(files)
+#     train = files[:int(0.7*numfiles)]
+#     trainlabels = []
+#     dev = files[int(0.7*numfiles):int(0.9 *numfiles)]
+#     devlabels = []
+#     test = files[int(0.9*numfiles):]
+#     testlabels = []
+#     validated = open('/data/s3757994/validated.tsv',"r")
+#     reader = csv.reader(validated, delimiter="\t")
+#     for row in reader:
+#         if row[1]+".wav" in train:
+#
+
+
+
+
+
 def traverse(root,path,search_fix='.wav',return_label=False):
+    files = os.listdir(root)
+    numfiles = len(files)
+    if path == "train":
+        set = files[:int(0.7*numfiles)]
+    elif path == "dev":
+        set = files[int(0.7*numfiles):int(0.9 *numfiles)]
+    else:
+        set = files[int(0.9*numfiles):]
     f_list = []
-    with open(path) as tsvfile:
+    with open('/data/s3757994/validated.tsv') as tsvfile:
       reader = csv.reader(tsvfile, delimiter='\t')
       first = True
       counter = 0
@@ -62,11 +89,12 @@ def traverse(root,path,search_fix='.wav',return_label=False):
           if first:
               first = False
           else:
+              if row[1] + ".wav" in set:
               # print(row[1])
-              if return_label:
-                  f_list.append(row[2])
-              else:
-                  f_list.append(root + row[1]+".wav")
+                  if return_label:
+                      f_list.append(row[2])
+                  else:
+                      f_list.append(root + row[1]+".wav")
           # counter += 1
     return f_list
 def flac2wav(f_path):
