@@ -23,10 +23,10 @@ files = [f for f in listdir(import_folder) if isfile(join(import_folder, f))]
 
 for file in files:
     # file = file[:-3]
-    song = AudioSegment.from_mp3(import_folder + "/" +file)
-    song.export(export_folder+"/"+file[:-4]+".wav",format = "wav")
-    try:
 
+    try:
+        song = AudioSegment.from_mp3(import_folder + "/" +file)
+        song.export(export_folder+"/"+file[:-4]+".wav",format = "wav")
 
         print(export_folder+"/"+file+"wav")
     except:
