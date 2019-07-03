@@ -97,7 +97,7 @@ def traverse(root,path,search_fix='.wav',return_label=False):
                       f_list.append(root + row[1]+".wav")
           # counter += 1
     return f_list
-    
+
 def flac2wav(f_path):
     flac_audio = AudioSegment.from_file(f_path, "flac")
     flac_audio.export(f_path[:-5]+'.wav', format="wav")
@@ -236,7 +236,7 @@ with open(root+file_name,'w') as f:
 print()
 print('Preparing Validation Dataset...',flush=True)
 
-dev_file_list = traverse(root,"dev"",search_fix='.fb'+str(n_filters))
+dev_file_list = traverse(root,"dev",search_fix='.fb'+str(n_filters))
 print(dev_file_list[0])
 dev_text = traverse(root,"dev",return_label=True)
 
