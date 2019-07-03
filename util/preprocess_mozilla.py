@@ -97,6 +97,7 @@ def traverse(root,path,search_fix='.wav',return_label=False):
                       f_list.append(root + row[1]+".wav")
           # counter += 1
     return f_list
+    
 def flac2wav(f_path):
     flac_audio = AudioSegment.from_file(f_path, "flac")
     flac_audio.export(f_path[:-5]+'.wav', format="wav")
@@ -116,17 +117,17 @@ print('Validation sets :',dev_path)
 print('Testing sets :',test_path)
 
 # # print('Training',flush=True)
-tr_file_list = traverse(root,train_path)
+tr_file_list = traverse(root,"train")
 # print(tr_file_list[0])
 # # results = Parallel(n_jobs=n_jobs,backend="threading")(delayed(flac2wav)(i) for i in tqdm(tr_file_list))
 #
 # print('Validation')
-dev_file_list = traverse(root,dev_path)
+dev_file_list = traverse(root,"dev")
 # print(dev_file_list[0])
 # results = Parallel(n_jobs=n_jobs,backend="threading")(delayed(flac2wav)(i) for i in tqdm(dev_file_list))
 #
 # # print('Testing',flush=True)
-tt_file_list = traverse(root,test_path)
+tt_file_list = traverse(root,"test")
 # results = Parallel(n_jobs=n_jobs,backend="threading")(delayed(flac2wav)(i) for i in tqdm(tt_file_list))
 
 
@@ -150,8 +151,8 @@ results = Parallel(n_jobs=n_jobs,backend="threading")(delayed(wav2logfbank)(i[:-
 print('---------------------------------------')
 print('Preparing Training Dataset...')
 
-tr_file_list = traverse(root,train_path,search_fix='.fb'+str(n_filters))
-tr_text = traverse(root,train_path,return_label=True)
+tr_file_list = traverse(root,"train",search_fix='.fb'+str(n_filters))
+tr_text = traverse(root,"train",return_label=True)
 
 X = []
 for f in tr_file_list:
@@ -235,9 +236,9 @@ with open(root+file_name,'w') as f:
 print()
 print('Preparing Validation Dataset...',flush=True)
 
-dev_file_list = traverse(root,dev_path,search_fix='.fb'+str(n_filters))
+dev_file_list = traverse(root,"dev"",search_fix='.fb'+str(n_filters))
 print(dev_file_list[0])
-dev_text = traverse(root,dev_path,return_label=True)
+dev_text = traverse(root,"dev",return_label=True)
 
 
 
@@ -289,8 +290,8 @@ with open(root+file_name,'w') as f:
 print()
 print('Preparing Testing Dataset...',flush=True)
 
-test_file_list = traverse(root,test_path,search_fix='.fb'+str(n_filters))
-tt_text = traverse(root,test_path,return_label=True)
+test_file_list = traverse(root,"test",search_fix='.fb'+str(n_filters))
+tt_text = traverse(root,"test",return_label=True)
 
 X = []
 for f in test_file_list:
