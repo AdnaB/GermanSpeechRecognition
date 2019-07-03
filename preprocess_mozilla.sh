@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --time=12:00:00
-#SBATCH --partition=cpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=10
 #SBATCH --mem=32GB
 module load Python/3.6.4-foss-2018a
 module load FFmpeg
