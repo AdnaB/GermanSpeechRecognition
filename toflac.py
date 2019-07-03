@@ -21,7 +21,7 @@ files = [f for f in listdir(import_folder) if isfile(join(import_folder, f))]
 #       counter += 1
 
 
-for file in files:
+for file in files[75000:]:
     # file = file[:-3]
 
     try:
