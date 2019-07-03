@@ -8,7 +8,8 @@ from joblib import Parallel, delayed
 
 
 def get_data(data_table,i):
-    return np.load(data_table.loc[i]['input'])
+    # print(data_table.loc[i]['input'])
+    return np.load(data_table.loc[i]['input'][:-3] +"fb40.npy")
 
 def load_dataset(data_path):
     data_table = pd.read_csv(data_path,index_col=0)
@@ -36,7 +37,7 @@ def ZeroPadding(x,pad_len):
 # each sequence should end with an <eos> (index = 1)
 # Input y: list of np array with shape ()
 # Output tuple: (indices, values, shape)
-def OneHotEncode(Y,max_len,max_idx=30):
+def OneHotEncode(Y,max_len,max_idx=94):
     new_y = np.zeros((len(Y),max_len,max_idx))
     for idx,label_seq in enumerate(Y):
         cnt = 0

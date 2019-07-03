@@ -42,11 +42,11 @@ import csv
 # n_filters = paras.n_filters
 # win_size = paras.win_size
 # norm_x = paras.norm_x
-
-dev_path = './GermanSpeechRecognition/de/dev.tsv'
-train_path = './GermanSpeechRecognition/de/train.tsv'
-test_path = './GermanSpeechRecognition/de/test.tsv'
-root = './GermanSpeechRecognition/de/clips_wav/'
+# /home/sanne/Documents/RUG/DeepLearning/GermanSpeechRecognition
+dev_path = '/data/s3757994/de/dev.tsv'
+train_path = '/data/s3757994/de/train.tsv'
+test_path = '/data/s3757994/de/test.tsv'
+root = '/data/s3757994/de/clips_wav/'
 n_jobs = -2
 n_filters = 40
 win_size = 0.025/3
