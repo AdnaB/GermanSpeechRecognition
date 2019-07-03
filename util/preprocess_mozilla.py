@@ -46,7 +46,7 @@ import csv
 dev_path = '/data/s3757994/dev.tsv'
 train_path = '/data/s3757994/train.tsv'
 test_path = '/data/s3757994/test.tsv'
-root = '/data/s3757994/clips_wav/'
+root = '/data/s3757994/clips_wav/
 n_jobs = -2
 n_filters = 40
 win_size = 0.025/3
