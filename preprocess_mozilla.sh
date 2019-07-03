@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --time=12:00:00
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
+#SBATCH --partition=cpu
 #SBATCH --mem=32GB
 module load Python/3.6.4-foss-2018a
 module load FFmpeg
