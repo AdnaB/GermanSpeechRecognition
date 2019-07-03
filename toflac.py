@@ -21,7 +21,7 @@ files = [f for f in listdir(import_folder) if isfile(join(import_folder, f))]
 #       counter += 1
 
 
-for file in files
+for file in files:
     # file = file[:-3]
     song = AudioSegment.from_mp3(import_folder + "/" +file)
     song.export(export_folder+"/"+file[:-4]+".wav",format = "wav")
